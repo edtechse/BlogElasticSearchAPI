@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace BlogElasticSearchService.Queries
+﻿namespace BlogElasticSearchService.Queries
 {
     public static class BlogQuery
     {

@@ -29,7 +29,7 @@ namespace BlogElasticSearchService.Controllers
 
 
         [HttpGet("autoComplete/{text}")]
-        public async Task<IActionResult> GetAutocompleteBlog(string text)
+        public async Task<IActionResult> GetAutoCompleteBlog(string text)
         {
             if (text == "" || text == null)
                 return BadRequest(new Exception("Search string is incorrect"));
