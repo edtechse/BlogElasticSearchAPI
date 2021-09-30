@@ -22,7 +22,7 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/edtechse/BlogElasticSearchAPI.git']]])    
             }
         }
- 
+    }
     // Building Docker images
     stage('Building image') {
       steps{
