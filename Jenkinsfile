@@ -22,7 +22,6 @@ pipeline {
                 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: '', url: 'https://github.com/edtechse/BlogElasticSearchAPI.git']]])    
             }
         }
-    }
     // Building Docker images
     stage('Building image') {
       steps{
@@ -40,7 +39,8 @@ pipeline {
                 sh "docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}:${IMAGE_TAG}"
          }
         }
-      }
+      } 
+    }
       post {
         always {
             emailext body: '\'Build failed in Jenkins: $PROJECT_NAME - #$BUILD_NUMBER\'', replyTo: 'no-reply@gmail.com', subject: '\'$PROJECT_NAME - Build # $BUILD_NUMBER - ERROR!\'', to: 'likhariinder@gmail.com,edtechse@gmail.com'
