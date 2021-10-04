@@ -10,7 +10,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 ARG SONAR_PROJECT_KEY=blog-elasticsearch
 ARG SONAR_OGRANIZAION_KEY=edtechproject
 ARG SONAR_HOST_URL=https://sonarcloud.io
-ARG SONAR_TOKEN=863ffca8fba735527dfd85c37598e4d5a14c61d8
+ARG SONAR_TOKEN
 
 WORKDIR /src
 
@@ -23,7 +23,8 @@ RUN dotnet sonarscanner begin \
   /k:"$SONAR_PROJECT_KEY" \
   /o:"$SONAR_OGRANIZAION_KEY" \
   /d:sonar.host.url="$SONAR_HOST_URL" \
-  /d:sonar.login="$SONAR_TOKEN"
+  /d:sonar.login="$SONAR_TOKEN" \
+  /d:sonar.cs.opencover.reportsPaths=/coverage.opencover.xml
   
 COPY ["BlogElasticSearchService.csproj", ""]
 RUN dotnet restore "./BlogElasticSearchService.csproj"
@@ -34,7 +35,7 @@ RUN dotnet build "BlogElasticSearchService.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "BlogElasticSearchService.csproj" -c Release -o /app/publish
 
-RUN dotnet sonarscanner end
+RUN dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
 
 FROM base AS final
 WORKDIR /app
