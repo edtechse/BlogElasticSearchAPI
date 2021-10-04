@@ -5,7 +5,7 @@ WORKDIR /app
 EXPOSE 80
 EXPOSE 443
   
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
 
 ARG SONAR_PROJECT_KEY=blog-elasticsearch
 ARG SONAR_OGRANIZAION_KEY=edtechproject
@@ -30,7 +30,6 @@ COPY ["BlogElasticSearchService.csproj", ""]
 RUN dotnet restore "./BlogElasticSearchService.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "BlogElasticSearchService.csproj" -c Release -o /app/build
 
 FROM build AS publish
 RUN dotnet publish "BlogElasticSearchService.csproj" -c Release -o /app/publish
