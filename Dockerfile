@@ -34,7 +34,7 @@ RUN dotnet build "BlogElasticSearchService.csproj" -c Release -o /app/build
 FROM build AS publish
 RUN dotnet publish "BlogElasticSearchService.csproj" -c Release -o /app/publish
 
-RUN dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
+RUN dotnet sonarscanner end
 
 FROM base AS final
 WORKDIR /app
