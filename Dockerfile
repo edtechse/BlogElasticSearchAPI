@@ -10,7 +10,7 @@ FROM mcr.microsoft.com/dotnet/core/sdk:3.1-buster AS build
 ARG SONAR_PROJECT_KEY=blog-elasticsearch
 ARG SONAR_OGRANIZAION_KEY=edtechproject
 ARG SONAR_HOST_URL=https://sonarcloud.io
-ARG SONAR_TOKEN
+ARG SONAR_TOKEN=863ffca8fba735527dfd85c37598e4d5a14c61d8
 
 WORKDIR /src
 
