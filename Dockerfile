@@ -34,7 +34,7 @@ WORKDIR "/src/."
 FROM build AS publish
 RUN dotnet publish "BlogElasticSearchService.csproj" -c Release -o /app/publish
 
-RUN dotnet sonarscanner end /d:sonar.login="$SONAR_TOKEN"
+RUN dotnet sonarscanner end /d:sonar.login=863ffca8fba735527dfd85c37598e4d5a14c61d8
 
 FROM base AS final
 WORKDIR /app
