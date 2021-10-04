@@ -26,7 +26,7 @@ pipeline {
     stage('Building image') {
       steps{
         script {
-          dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}"
+          dockerImage = docker.build "${IMAGE_REPO_NAME}:${IMAGE_TAG}" --build-arg SONAR_TOKEN=863ffca8fba735527dfd85c37598e4d5a14c61d8
         }
       }
     }
